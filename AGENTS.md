@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Planner data lives in the `videos` table; any signed-in user may edit (shared team account), and public sign-up is disabled — why: one common admin login for the team.
