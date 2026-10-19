@@ -388,13 +388,19 @@ function VideoForm({
     setF((p) => ({ ...p, [k]: k === "num" ? Number(e.target.value) : e.target.value }));
 
   async function save() {
-    if (!f.title?.trim()) return toast.error("Give the video a title");
+    if (!f.title?.trim()) {
+      toast.error("Give the video a title");
+      return;
+    }
     setBusy(true);
     const res = value === "new" || !value
       ? await supabase.from("videos").insert(f)
       : await supabase.from("videos").update(f).eq("id", value.id);
     setBusy(false);
-    if (res.error) return toast.error(res.error.message);
+    if (res.error) {
+      toast.error(res.error.message);
+      return;
+    }
     toast.success(value === "new" ? "Video added" : "Video updated");
     onSaved();
     onClose();
@@ -414,7 +420,7 @@ function VideoForm({
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1.5">
               <Label>Stage</Label>
-              <Select value={f.stage} onValueChange={(v) => setF((p) => ({ ...p, stage: v }))}>
+              <Select value={f.stage ?? "awareness"} onValueChange={(v) => setF((p) => ({ ...p, stage: v }))}>
                 <SelectTrigger><SelectValue /></SelectTrigger>
                 <SelectContent>
                   {Object.entries(STAGES).map(([k, s]) => <SelectItem key={k} value={k}>{s.short}</SelectItem>)}
