@@ -14,7 +14,63 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      videos: {
+        Row: {
+          created_at: string
+          cta: string
+          done: boolean
+          extra_notes: string
+          format: string
+          goal: string
+          hook: string
+          id: string
+          notes: string
+          num: number
+          priority: boolean
+          script: string
+          stage: string
+          tasks: Json
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          cta?: string
+          done?: boolean
+          extra_notes?: string
+          format?: string
+          goal?: string
+          hook?: string
+          id?: string
+          notes?: string
+          num: number
+          priority?: boolean
+          script?: string
+          stage?: string
+          tasks?: Json
+          title?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          cta?: string
+          done?: boolean
+          extra_notes?: string
+          format?: string
+          goal?: string
+          hook?: string
+          id?: string
+          notes?: string
+          num?: number
+          priority?: boolean
+          script?: string
+          stage?: string
+          tasks?: Json
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
